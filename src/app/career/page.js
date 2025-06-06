@@ -45,7 +45,7 @@ export default function CareerPage() {
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Career Guidance & Counseling</h1>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
-            "शिक्षित भारत, विकसित भारत" - निःशुल्क करियर परामर्श, गुणवत्तापूर्ण शिक्षा एवं कौशल युक्त प्रशिक्षण।
+            शिक्षित भारत, विकसित भारत - निःशुल्क करियर परामर्श, गुणवत्तापूर्ण शिक्षा एवं कौशल युक्त प्रशिक्षण।
           </p>
           <div className="bg-green-100 border border-green-300 rounded-lg p-4 inline-block">
             <p className="text-green-800 font-semibold text-lg">🆓 FREE Career Counseling Sessions Available</p>

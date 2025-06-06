@@ -8,7 +8,7 @@ export default function EnquiryPage() {
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Student Enquiry</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Have questions about our courses, admission process, or career guidance? We're here to help you make the
+            Have questions about our courses, admission process, or career guidance? We re here to help you make the
             right educational choices.
           </p>
         </div>
@@ -29,7 +29,7 @@ export default function EnquiryPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Father's Name</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Father s Name</label>
                   <input
                     type="text"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
