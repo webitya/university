@@ -31,7 +31,7 @@ export default function AboutPage() {
           <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">About United Group of Education</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Empowering students with quality education and comprehensive career guidance for a brighter future in
-            India's educational landscape.
+            India s educational landscape.
           </p>
         </div>
 
@@ -43,7 +43,7 @@ export default function AboutPage() {
               <h2 className="text-2xl font-bold text-gray-800">Our Mission</h2>
             </div>
             <p className="text-gray-700 mb-4">
-              "शिक्षित भारत, विकसित भारत" - We are committed to providing free career counseling, quality education, and
+              शिक्षित भारत, विकसित भारत - We are committed to providing free career counseling, quality education, and
               skill-based training to build a developed India through education.
             </p>
             <p className="text-gray-700">निःशुल्क करियर परामर्श, गुणवत्तापूर्ण शिक्षा एवं कौशल युक्त प्रशिक्षण।</p>
