@@ -114,74 +114,7 @@ export default function Header() {
                 </div>
               </div>
 
-              {/* Bottom Contact Section */}
-              <div className="border-t border-blue-800 pt-4 px-4">
-                <div className="bg-gradient-to-r from-blue-800 to-blue-700 rounded-xl p-4 shadow-lg">
-                  <div className="text-center mb-4">
-                    <h3 className="text-lg font-bold text-white mb-1">📞 Contact Us Now</h3>
-                    <p className="text-xs text-blue-200">Free Career Counseling Available</p>
-                  </div>
-
-                  {/* Primary Call Button */}
-                  <button
-                    onClick={() => handleCallClick("7766057754")}
-                    className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 px-4 rounded-lg font-bold transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg mb-3 transform hover:scale-105"
-                  >
-                    <Phone className="text-lg" />
-                    <span>7766057754</span>
-                    <span className="text-xs bg-orange-600 px-2 py-1 rounded-full ml-2">Primary</span>
-                  </button>
-
-                  {/* Secondary Call Numbers */}
-                  <div className="grid grid-cols-2 gap-2 mb-4">
-                    <button
-                      onClick={() => handleCallClick("8252530876")}
-                      className="bg-blue-600 hover:bg-blue-500 text-white py-2 px-3 rounded-lg transition-all duration-300 flex items-center justify-center space-x-1 text-sm font-medium"
-                    >
-                      <Phone className="text-sm" />
-                      <span>8252530876</span>
-                    </button>
-                    <button
-                      onClick={() => handleCallClick("7857905134")}
-                      className="bg-blue-600 hover:bg-blue-500 text-white py-2 px-3 rounded-lg transition-all duration-300 flex items-center justify-center space-x-1 text-sm font-medium"
-                    >
-                      <Phone className="text-sm" />
-                      <span>7857905134</span>
-                    </button>
-                  </div>
-
-                  {/* Additional Contact Options */}
-                  <div className="grid grid-cols-2 gap-2">
-                    <button
-                      onClick={handleWhatsAppClick}
-                      className="bg-green-600 hover:bg-green-500 text-white py-2 px-3 rounded-lg transition-all duration-300 flex items-center justify-center space-x-1 text-sm font-medium"
-                    >
-                      <WhatsApp className="text-sm" />
-                      <span>WhatsApp</span>
-                    </button>
-                    <button
-                      onClick={handleEmailClick}
-                      className="bg-gray-600 hover:bg-gray-500 text-white py-2 px-3 rounded-lg transition-all duration-300 flex items-center justify-center space-x-1 text-sm font-medium"
-                    >
-                      <Email className="text-sm" />
-                      <span>Email</span>
-                    </button>
-                  </div>
-
-                  {/* Office Hours */}
-                  <div className="mt-4 text-center">
-                    <p className="text-xs text-blue-200">📅 Mon-Sat: 9:00 AM - 6:00 PM | Sun: 10:00 AM - 4:00 PM</p>
-                  </div>
-                </div>
-
-                {/* Institution Info */}
-                <div className="mt-4 text-center">
-                  <p className="text-xs text-blue-300">🏆 ISO Certified Institution | 🎓 20+ Partner Universities</p>
-                  <p className="text-xs text-blue-400 mt-1">
-                    Near Shiv Mandir, Daladali Chowk, Ring Road, Ranchi – 835222
-                  </p>
-                </div>
-              </div>
+   
             </nav>
           </div>
         )}
