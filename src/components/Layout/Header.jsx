@@ -1,7 +1,7 @@
 "use client"
 import { useState } from "react"
 import Link from "next/link"
-import { Menu, Close, School } from "@mui/icons-material"
+import { Menu, Close, School, Phone, WhatsApp, Email } from "@mui/icons-material"
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -16,6 +16,19 @@ export default function Header() {
     { name: "Enquiry", href: "/enquiry" },
   ]
 
+  const handleCallClick = (number) => {
+    window.open(`tel:+91${number}`, "_self")
+  }
+
+  const handleWhatsAppClick = () => {
+    const message = "Hello! I would like to know more about your courses and admission process."
+    window.open(`https://wa.me/917766057754?text=${encodeURIComponent(message)}`, "_blank")
+  }
+
+  const handleEmailClick = () => {
+    window.open("mailto:unitedgroup.education@gmail.com", "_self")
+  }
+
   return (
     <header className="bg-blue-900 text-white shadow-lg sticky top-0 z-50">
       <div className="container mx-auto px-4">
@@ -29,34 +42,148 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-6">
+          <nav className="hidden lg:flex items-center space-x-6">
             {navItems.map((item) => (
               <Link key={item.name} href={item.href} className="hover:text-blue-200 transition-colors font-medium">
                 {item.name}
               </Link>
             ))}
+
+            {/* Desktop Call Button */}
+            <button
+              onClick={() => handleCallClick("7766057754")}
+              className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-semibold transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105"
+            >
+              <Phone className="text-lg" />
+              <span className="hidden xl:inline">7766057754</span>
+              <span className="xl:hidden">Call</span>
+            </button>
           </nav>
 
           {/* Mobile Menu Button */}
-          <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <Close /> : <Menu />}
-          </button>
+          <div className="lg:hidden flex items-center space-x-3">
+            {/* Mobile Call Button */}
+            <button
+              onClick={() => handleCallClick("7766057754")}
+              className="bg-orange-500 hover:bg-orange-600 text-white p-2 rounded-lg transition-all duration-300 shadow-lg"
+            >
+              <Phone className="text-lg" />
+            </button>
+
+            <button onClick={() => setIsMenuOpen(!isMenuOpen)}>{isMenuOpen ? <Close /> : <Menu />}</button>
+          </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation Drawer */}
         {isMenuOpen && (
-          <nav className="md:hidden pb-4">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="block py-2 hover:text-blue-200 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.name}
-              </Link>
-            ))}
-          </nav>
+          <div className="lg:hidden">
+            <nav className="pb-6 border-t border-blue-800 pt-4">
+              {/* Navigation Links */}
+              <div className="space-y-1 mb-6">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="block py-3 px-4 hover:bg-blue-800 hover:text-blue-200 transition-colors rounded-lg font-medium"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+
+              {/* Quick Actions */}
+              <div className="mb-6 px-4">
+                <div className="grid grid-cols-2 gap-3">
+                  <Link href="/enquiry">
+                    <button
+                      className="w-full bg-green-600 hover:bg-green-700 text-white py-3 px-4 rounded-lg font-semibold transition-colors text-sm"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Enquire Now
+                    </button>
+                  </Link>
+                  <Link href="/admission">
+                    <button
+                      className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 px-4 rounded-lg font-semibold transition-colors text-sm"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Apply Now
+                    </button>
+                  </Link>
+                </div>
+              </div>
+
+              {/* Bottom Contact Section */}
+              <div className="border-t border-blue-800 pt-4 px-4">
+                <div className="bg-gradient-to-r from-blue-800 to-blue-700 rounded-xl p-4 shadow-lg">
+                  <div className="text-center mb-4">
+                    <h3 className="text-lg font-bold text-white mb-1">📞 Contact Us Now</h3>
+                    <p className="text-xs text-blue-200">Free Career Counseling Available</p>
+                  </div>
+
+                  {/* Primary Call Button */}
+                  <button
+                    onClick={() => handleCallClick("7766057754")}
+                    className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 px-4 rounded-lg font-bold transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg mb-3 transform hover:scale-105"
+                  >
+                    <Phone className="text-lg" />
+                    <span>7766057754</span>
+                    <span className="text-xs bg-orange-600 px-2 py-1 rounded-full ml-2">Primary</span>
+                  </button>
+
+                  {/* Secondary Call Numbers */}
+                  <div className="grid grid-cols-2 gap-2 mb-4">
+                    <button
+                      onClick={() => handleCallClick("8252530876")}
+                      className="bg-blue-600 hover:bg-blue-500 text-white py-2 px-3 rounded-lg transition-all duration-300 flex items-center justify-center space-x-1 text-sm font-medium"
+                    >
+                      <Phone className="text-sm" />
+                      <span>8252530876</span>
+                    </button>
+                    <button
+                      onClick={() => handleCallClick("7857905134")}
+                      className="bg-blue-600 hover:bg-blue-500 text-white py-2 px-3 rounded-lg transition-all duration-300 flex items-center justify-center space-x-1 text-sm font-medium"
+                    >
+                      <Phone className="text-sm" />
+                      <span>7857905134</span>
+                    </button>
+                  </div>
+
+                  {/* Additional Contact Options */}
+                  <div className="grid grid-cols-2 gap-2">
+                    <button
+                      onClick={handleWhatsAppClick}
+                      className="bg-green-600 hover:bg-green-500 text-white py-2 px-3 rounded-lg transition-all duration-300 flex items-center justify-center space-x-1 text-sm font-medium"
+                    >
+                      <WhatsApp className="text-sm" />
+                      <span>WhatsApp</span>
+                    </button>
+                    <button
+                      onClick={handleEmailClick}
+                      className="bg-gray-600 hover:bg-gray-500 text-white py-2 px-3 rounded-lg transition-all duration-300 flex items-center justify-center space-x-1 text-sm font-medium"
+                    >
+                      <Email className="text-sm" />
+                      <span>Email</span>
+                    </button>
+                  </div>
+
+                  {/* Office Hours */}
+                  <div className="mt-4 text-center">
+                    <p className="text-xs text-blue-200">📅 Mon-Sat: 9:00 AM - 6:00 PM | Sun: 10:00 AM - 4:00 PM</p>
+                  </div>
+                </div>
+
+                {/* Institution Info */}
+                <div className="mt-4 text-center">
+                  <p className="text-xs text-blue-300">🏆 ISO Certified Institution | 🎓 20+ Partner Universities</p>
+                  <p className="text-xs text-blue-400 mt-1">
+                    Near Shiv Mandir, Daladali Chowk, Ring Road, Ranchi – 835222
+                  </p>
+                </div>
+              </div>
+            </nav>
+          </div>
         )}
       </div>
     </header>
