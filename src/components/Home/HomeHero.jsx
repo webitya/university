@@ -1,78 +1,101 @@
-import { School, Star, CheckCircle } from "@mui/icons-material"
+"use client";
+import { useState, useRef, useEffect } from "react";
+import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
+import Link from "next/link";
+
+const slides = [
+  "https://wallpapers.com/images/hd/college-background-livv32ma9zxjii0i.jpg",
+  "https://wallpaperbat.com/img/1698590-4k-oxford-university-wallpaper-and-background-image.jpg",
+  "https://wallpaperaccess.com/full/1209573.jpg",
+];
 
 export default function HomeHero() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+
+  const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % slides.length);
+  const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e) => {
+    touchEndX.current = e.changedTouches[0].clientX;
+    if (touchStartX.current - touchEndX.current > 50) nextSlide(); // swipe left
+    if (touchEndX.current - touchStartX.current > 50) prevSlide(); // swipe right
+  };
+
+  useEffect(() => {
+    const interval = setInterval(nextSlide, 5000); // auto-slide
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-16">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <School className="text-4xl text-yellow-400" />
-              <span className="bg-yellow-400 text-blue-900 px-3 py-1 rounded-full text-sm font-semibold">
-                ISO Certified
-              </span>
-            </div>
+    <section className="relative w-full h-[300px] sm:h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden">
+      <div
+        className="relative w-full h-full"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
+        {slides.map((src, index) => (
+          <img
+            key={index}
+            src={src}
+            alt={`Slide ${index + 1}`}
+            className={`absolute w-full h-full object-cover transition-opacity duration-700 ${
+              index === currentIndex ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        ))}
 
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Welcome to United Group of Education</h1>
-
-            <p className="text-xl mb-6 text-blue-100">"शिक्षित भारत, विकसित भारत"</p>
-
-            <p className="text-lg mb-8 text-blue-100">निःशुल्क करियर परामर्श, गुणवत्तापूर्ण शिक्षा एवं कौशल युक्त प्रशिक्षण।</p>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="text-green-400" />
-                <span>Career Counseling</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="text-green-400" />
-                <span>Quality Education</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="text-green-400" />
-                <span>Skill Development</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="text-green-400" />
-                <span>Admission Guidance</span>
-              </div>
-            </div>
-
-            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-              <button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
-                Apply Now
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/40 flex flex-col justify-center items-center text-center px-4 text-white">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-extrabold mb-6 drop-shadow-lg">
+            Empower Your Future with United Group of Education
+          </h1>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Link href="/contact">
+              <button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-xl font-semibold shadow-md transition-all duration-300">
+                Get Free Counseling
               </button>
-              <button className="border-2 border-white text-white hover:bg-white hover:text-blue-900 px-8 py-3 rounded-lg font-semibold transition-colors">
-                View Courses
+            </Link>
+            <Link href="/courses">
+              <button className="bg-white hover:bg-blue-100 text-blue-900 px-8 py-3 rounded-xl font-semibold shadow-md transition-all duration-300">
+                Explore Courses
               </button>
-            </div>
+            </Link>
           </div>
+        </div>
 
-          <div className="text-center">
-            <div className="bg-white text-blue-900 p-8 rounded-lg shadow-xl">
-              <h3 className="text-2xl font-bold mb-4">Admissions Open!</h3>
-              <p className="text-lg mb-4">2024-25 Academic Session</p>
-              <div className="space-y-2 text-sm">
-                <p className="flex items-center justify-center space-x-2">
-                  <Star className="text-yellow-500" />
-                  <span>Regular/Distance/Online Mode</span>
-                </p>
-                <p className="flex items-center justify-center space-x-2">
-                  <Star className="text-yellow-500" />
-                  <span>Scholarship & Loan Available</span>
-                </p>
-                <p className="flex items-center justify-center space-x-2">
-                  <Star className="text-yellow-500" />
-                  <span>19+ Partner Universities</span>
-                </p>
-              </div>
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg mt-4 font-semibold transition-colors">
-                Get Details
-              </button>
-            </div>
-          </div>
+        {/* Arrows */}
+        <button
+          onClick={prevSlide}
+          className="absolute top-1/2 left-4 transform -translate-y-1/2 text-white bg-black/40 hover:bg-black p-2 rounded-full shadow-md z-10"
+        >
+          <ArrowBackIosNew fontSize="small" />
+        </button>
+        <button
+          onClick={nextSlide}
+          className="absolute top-1/2 right-4 transform -translate-y-1/2 text-white bg-black/40 hover:bg-black p-2 rounded-full shadow-md z-10"
+        >
+          <ArrowForwardIos fontSize="small" />
+        </button>
+
+        {/* Dots */}
+        <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-2">
+          {slides.map((_, i) => (
+            <div
+              key={i}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                i === currentIndex ? "bg-white" : "bg-white/40"
+              }`}
+              onClick={() => setCurrentIndex(i)}
+            />
+          ))}
         </div>
       </div>
     </section>
-  )
+  );
 }
